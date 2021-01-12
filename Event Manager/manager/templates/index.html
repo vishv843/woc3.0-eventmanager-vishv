@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<html>
+<head>
+    <title>Event Manager</title>
+    <style type="text/css">
+        body 
+        {
+            background: yellow;
+        }
+        h1
+        {
+            text-align:center;
+            position:absolute;
+            top: 30%;
+            left: 35%;
+            transform: translateX()translateY()
+        }
+        p
+        {
+
+            text-align:center;
+            position:absolute;
+            top: 50%;
+            left: 45%;
+            transform: translateX()translateY()
+        }
+    </style>
+</head>
+
+<body>
+
+
+<h1>Event Management Web App</h1>
+<p>
+    
+    <a href="{% url 'event_reg' %}" >Event Registration</a><br>
+    <a href="{% url 'part_reg' %}">Participant Registration</a><br>
+    <a href="{% url 'event_dash' %}">Event Dashboard</a>
+        
+</p>
+
+
+</body>
+</html>
+{% endblock %}
