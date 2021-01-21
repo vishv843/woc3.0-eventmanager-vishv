@@ -5,6 +5,21 @@
     <title></title>
 </head>
 <body>
-event registration
+<form method="POST"> 
+  {% csrf_token %}
+  Name of the event:<br> 
+  <input type="text" name="event_name"> 
+  <br> 
+  Description:<br> 
+  <textarea rows = "5" cols = "50" name = "description"></textarea>
+  <br>
+  Link of the poster:<br> 
+  <input type="text" name="poster_link"> 
+  <br> 
+  Host email id:<br> 
+  <input type="text" name="host_id"> 
+  <br><br> 
+  <input type="submit" value="Submit"> 
+</form>  
 </body>
 </html>
