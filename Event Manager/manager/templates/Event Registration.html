@@ -3,23 +3,40 @@
 <html>
 <head>
     <title></title>
+        <style type="text/css">
+            .container {
+          
+        }
+        </style>
 </head>
 <body>
 <form method="POST"> 
+<div class ="container">
   {% csrf_token %}
   Name of the event:<br> 
   <input type="text" name="event_name"> 
-  <br> 
+  <br><br> 
+  Registration starts from(DD/MM/YYYY):    
+  <input type="text" name="from_date"> 
+  Time: 
+  <input type="text" name="from_time"> 
+  <br><br> 
+  Deadline(DD/MM/YYYY):
+  <input type="text" name="to_date"> 
+  Time:
+  <input type="text" name="to_time"> 
+  <br><br> 
   Description:<br> 
   <textarea rows = "5" cols = "50" name = "description"></textarea>
-  <br>
+  <br><br>
   Link of the poster:<br> 
   <input type="text" name="poster_link"> 
-  <br> 
+  <br><br> 
   Host email id:<br> 
   <input type="text" name="host_id"> 
   <br><br> 
   <input type="submit" value="Submit"> 
+</div>
 </form>  
 </body>
 </html>
