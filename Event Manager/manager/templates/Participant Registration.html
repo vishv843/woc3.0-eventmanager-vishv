@@ -6,6 +6,38 @@
     <title></title>
 </head>
 <body>
-participant registration
+<form method="post">
+    {% csrf_token %}
+    Name:<br> 
+    <input type="text" name="part_name"> 
+    <br><br>
+    Contact Number:<br> 
+    <input type="text" name="contact"> 
+    <br><br>
+    Email id:<br> 
+    <input type="text" name="email_id"> 
+    <br><br>
+    Name of the event:<br> 
+    <input type="text" name="event_name"> 
+    <br><br>
+    Select participation type:<br>
+    <input type="radio" name="type" id="Individual" onclick="func()"> 
+    <label for="Individual">Individual</label><br> 
+    <input type="radio" name="type" id="Group" onclick="func1()"> 
+    <label for="Group">Group</label>
+    <br><br>  
+    Number of participants:<br>
+    <input type="text" name="people" id="people" disabled>
+    <script>
+        function func() {
+            document.getElementById("people").disabled = true;
+        }
+        function func1() {
+            document.getElementById("people").disabled = false;
+        }
+    </script>
+  <input type="submit" value="Submit"> 
+
+</form>
 </body>
 </html>
