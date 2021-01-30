@@ -16,16 +16,19 @@
   Name of the event:<br> 
   <input type="text" name="event_name"> 
   <br><br> 
-  Registration starts from(DD/MM/YYYY):    
-  <input type="text" name="from_date"> 
+  From(DD/MM/YYYY):    
+  <input type="date" name="from_date"> 
   Time: 
-  <input type="text" name="from_time"> 
+  <input type="time" name="from_time"> 
   <br><br> 
-  Deadline(DD/MM/YYYY):
-  <input type="text" name="to_date"> 
+  To(DD/MM/YYYY):
+  <input type="date" name="to_date"> 
   Time:
-  <input type="text" name="to_time"> 
+  <input type="time" name="to_time"> 
   <br><br> 
+  Deadline(YYYY-MM-DD):
+  <input type="date" name="deadline"> 
+  <br><br>
   Description:<br> 
   <textarea rows = "5" cols = "50" name = "description"></textarea>
   <br><br>
@@ -35,6 +38,9 @@
   Host email id:<br> 
   <input type="text" name="host_id"> 
   <br><br> 
+  Host password:<br>
+  <input type="password" name="password">
+  <br><br>
   <input type="submit" value="Submit"> 
 </div>
 </form>  

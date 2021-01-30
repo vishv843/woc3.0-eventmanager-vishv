@@ -18,16 +18,21 @@
     <input type="text" name="email_id"> 
     <br><br>
     Name of the event:<br> 
-    <input type="text" name="event_name"> 
+    <select name="event">
+        {% for event_name in events %}
+            <option>{{ event_name }}</option>
+        {% endfor %}
+    </select> 
     <br><br>
     Select participation type:<br>
-    <input type="radio" name="type" id="Individual" onclick="func()"> 
+    <input type="radio" name="type" value="Individual" onclick="func()"> 
     <label for="Individual">Individual</label><br> 
-    <input type="radio" name="type" id="Group" onclick="func1()"> 
+    <input type="radio" name="type" value="Group" onclick="func1()"> 
     <label for="Group">Group</label>
     <br><br>  
     Number of participants:<br>
     <input type="text" name="people" id="people" disabled>
+    <br><br>
     <script>
         function func() {
             document.getElementById("people").disabled = true;

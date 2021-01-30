@@ -1,23 +1,25 @@
 from django.db import models
 
-class register(models.Model):
-    event_id = models.IntegerField()
+class event(models.Model):
+    event_ID = models.IntegerField()
     event_name = models.CharField(max_length = 50)
     description = models.TextField()
-    from_date = models.CharField(max_length = 50)
-    from_time = models.CharField(max_length = 10)
-    to_date = models.CharField(max_length = 50)
-    to_time = models.CharField(max_length = 10)
+    from_date = models.DateField()
+    from_time = models.TimeField()
+    to_date = models.DateField()
+    to_time = models.TimeField()
+    registration_deadline = models.DateField()
     poster_link = models.TextField()
-    host_id = models.EmailField()
+    password = models.CharField(max_length = 50)
+    email_ID = models.EmailField()
 
 class participant(models.Model):
-    part_id = models.IntegerField()
-    part_name = models.CharField(max_length = 50)
+    particpant_ID = models.IntegerField()
+    name = models.CharField(max_length = 50)
     contact = models.IntegerField()
-    email_id = models.EmailField()
-    event = models.CharField(max_length = 50)
-    reg_type = models.CharField(max_length = 20)
-    people = models.IntegerField(null = True)
+    email_ID = models.EmailField()
+    event_name = models.CharField(max_length = 50)
+    registration_type = models.CharField(max_length = 20)
+    number_of_participants = models.IntegerField(null = True)
 
  

@@ -2,10 +2,10 @@ from django.contrib import admin
 from .models import *
 
 
-class RegisterAdmin(admin.ModelAdmin):
-    list_display = ('event_id', 'event_name', 'host_id')
+class EventAdmin(admin.ModelAdmin):
+    list_display = ('event_ID', 'event_name', 'email_ID')
 class PartAdmin(admin.ModelAdmin):
-    list_display = ('part_name', 'contact')
+    list_display = ('name', 'contact')
 
-admin.site.register(register, RegisterAdmin)
+admin.site.register(event, EventAdmin)
 admin.site.register(participant, PartAdmin)
