@@ -21,9 +21,9 @@ def email_host(post):
 def email_part(post):
     subject = "Thank You for participating"
     if post.registration_type == "Group":
-        message = "Participant ID: " + str(post.particpant_ID) + "\nParticipant name: " + str(post.name) + "\nContact Number: " + str(post.contact) + "\nEvent: " + str(post.event) + "\nType: Group" + "\nNumber of participants: " + str(post.number_of_participants)
+        message = "Participant ID: " + str(post.particpant_ID) + "\nParticipant name: " + str(post.name) + "\nContact Number: " + str(post.contact) + "\nEvent: " + str(post.event_name) + "\nType: Group" + "\nNumber of participants: " + str(post.number_of_participants)
     else:
-        message = "Participant ID: " + str(post.particpant_ID) + "\nParticipant name: " + str(post.name) + "\nContact Number: " + str(post.contact) + "\nEvent: " + str(post.event) + "\nType: Individual" 
+        message = "Participant ID: " + str(post.particpant_ID) + "\nParticipant name: " + str(post.name) + "\nContact Number: " + str(post.contact) + "\nEvent: " + str(post.event_name) + "\nType: Individual" 
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [post.email_ID]
     send_mail(subject, message, email_from, recipient_list)
@@ -71,4 +71,39 @@ def part_reg(request):
         return render(request, 'Participant Registration.html', {'events': events})
 
 def event_dash(request):
-    return render(request, 'Event Dashboard.html')
+    message = None
+    if request.method == 'POST':
+        id = request.POST.get('event_id')
+        password = request.POST.get('password')
+        x = event.objects.all()
+        event_id = None
+        event_name = None
+        event_password = None
+        for i in x:
+            if id == str(i.event_ID):
+                event_id = i.event_ID
+                event_name = i.event_name
+                break
+        print(event_id)
+        if event_id == None:
+            message = "Incorrect ID !!!"
+            return render(request, 'Event Dashboard.html', {'message': message})
+        for i in x:
+            if password == i.password:
+                event_password = i.password
+                break
+        if event_password == None:
+            message = "Incorrect password !!!"
+            return render(request, 'Event Dashboard.html', {'message': message})
+        part = participant.objects.all()
+        part_list = []
+        for i in part:
+            if i.event_name == event_name:
+                part_list.append(i)
+        context = {
+            'message': message,
+            'part_list': part_list
+            }
+        return render(request, 'Event Dashboard.html', context)
+    else:
+        return render(request, 'Event Dashboard.html', {'message': message})

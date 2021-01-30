@@ -6,6 +6,27 @@
     <title></title>
 </head>
 <body>
-event dashboard
+<form method="post">
+    {% csrf_token %}
+    Event ID:<br> 
+    <input type="text" name="event_id"> 
+    <br><br>
+    Host password:<br> 
+    <input type="password" name="password"> 
+    <br><br>
+    <input type="submit" value="Submit"> 
+    <br><br>
+    {% if message %}
+        {{ message }}
+    {% else %}
+        {% for part in part_list %}
+            <p>
+                {{ part.name }}  {{ part.contact }}<br>
+            </p>
+        {% endfor %}
+    {% endif %}
+    <br><br>
+    <a href="{% url '' %}">Back to homepage</a>
+</form>
 </body>
 </html>
