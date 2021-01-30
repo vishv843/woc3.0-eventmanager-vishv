@@ -55,7 +55,6 @@ def part_reg(request):
     for i in x:    
         if i.registration_deadline >= t:
             events.append(i.event_name) 
-    print(events)
     if request.method == 'POST':
         post = participant()
         post.particpant_ID = random_number()
