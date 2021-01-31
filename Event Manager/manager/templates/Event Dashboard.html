@@ -5,13 +5,27 @@
     <meta charset="utf-8" />
     <title>Event Dashboard</title>
     <style>
+        body {
+           background:yellow; 
+        }
          table, th, td {
             border: 1px solid black;
          }
+         .container {
+                background: green;
+                text-align:center;
+                position:absolute;
+                top: 20%;
+                left:45%;
+                transform: translateX()translateY()
+        }
+            
+        
      </style>
 </head>
 <body>
 <form method="post">
+    <div class="container">
     {% csrf_token %}
     <h1>Event Dashboard</h1>
     Event ID:<br> 
@@ -44,7 +58,7 @@
     {% endif %}
     <br><br>
     <a href="{% url 'home' %}">Back to homepage</a>
-    
+    </div>
 </form>
 </body>
 </html>
