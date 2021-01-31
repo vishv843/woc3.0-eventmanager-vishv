@@ -3,11 +3,17 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Event Dashboard</title>
+    <style>
+         table, th, td {
+            border: 1px solid black;
+         }
+     </style>
 </head>
 <body>
 <form method="post">
     {% csrf_token %}
+    <h1>Event Dashboard</h1>
     Event ID:<br> 
     <input type="text" name="event_id"> 
     <br><br>
@@ -19,14 +25,26 @@
     {% if message %}
         {{ message }}
     {% else %}
-        {% for part in part_list %}
-            <p>
-                {{ part.name }}  {{ part.contact }}<br>
-            </p>
-        {% endfor %}
+        <table>
+         <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Email ID</th>
+         </tr>
+         {% for part in part_list %}
+                <tr>
+                    <td>{{ part.participant_ID }}</td>
+                    <td>{{ part.name }}</td>
+                    <td>{{ part.contact }}</td>
+                    <td>{{ part.email_ID }}</td>
+                </tr>
+         {% endfor %}
+        </table>
     {% endif %}
     <br><br>
     <a href="{% url 'home' %}">Back to homepage</a>
+    
 </form>
 </body>
 </html>

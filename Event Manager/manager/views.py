@@ -4,6 +4,7 @@ from random import randint
 from django.core.mail import send_mail
 from django.conf import settings
 from datetime import date
+from twilio.rest import Client
 
 def index(request):
     return render(request, 'index.html')
@@ -21,12 +22,27 @@ def email_host(post):
 def email_part(post):
     subject = "Thank You for participating"
     if post.registration_type == "Group":
-        message = "Participant ID: " + str(post.particpant_ID) + "\nParticipant name: " + str(post.name) + "\nContact Number: " + str(post.contact) + "\nEvent: " + str(post.event_name) + "\nType: Group" + "\nNumber of participants: " + str(post.number_of_participants)
+        message = "Participant ID: " + str(post.participant_IDD) + "\nParticipant name: " + str(post.name) + "\nContact Number: " + str(post.contact) + "\nEvent: " + str(post.event_name) + "\nType: Group" + "\nNumber of participants: " + str(post.number_of_participants)
     else:
-        message = "Participant ID: " + str(post.particpant_ID) + "\nParticipant name: " + str(post.name) + "\nContact Number: " + str(post.contact) + "\nEvent: " + str(post.event_name) + "\nType: Individual" 
+        message = "Participant ID: " + str(post.participant_ID) + "\nParticipant name: " + str(post.name) + "\nContact Number: " + str(post.contact) + "\nEvent: " + str(post.event_name) + "\nType: Individual" 
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [post.email_ID]
     send_mail(subject, message, email_from, recipient_list)
+
+def text(post):
+    account_sid = '' # not written here
+    auth_token = ''
+    client = Client(account_sid, auth_token)
+
+    message = client.messages \
+                    .create(
+                         body="Thank you for participating",
+                         from_='+14243638641',
+                         to=post.contact
+                     )
+
+    print(message.sid)
+
 
 def event_reg(request):
     if request.method == 'POST':
@@ -52,12 +68,13 @@ def part_reg(request):
     x = event.objects.all()
     t = date.today()  
     events = []
+    r = range(1,20)
     for i in x:    
         if i.registration_deadline >= t:
             events.append(i.event_name) 
     if request.method == 'POST':
         post = participant()
-        post.particpant_ID = random_number()
+        post.participant_ID = random_number()
         post.name = request.POST.get('part_name')
         post.contact = request.POST.get('contact')
         post.email_ID = request.POST.get('email_id')
@@ -66,9 +83,10 @@ def part_reg(request):
         post.number_of_participants = request.POST.get('people')
         post.save()   
         email_part(post)
-        return render(request, 'Participant Registration.html', {'events': events})
+        text(post)
+        return render(request, 'Participant Registration.html', {'events': events, 'range': r})
     else :
-        return render(request, 'Participant Registration.html', {'events': events})
+        return render(request, 'Participant Registration.html', {'events': events, 'range': r})
 
 def event_dash(request):
     message = None

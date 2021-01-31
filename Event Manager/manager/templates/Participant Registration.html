@@ -3,11 +3,12 @@
 <html>
 <head>
     
-    <title></title>
+    <title>Participant Registration</title>
 </head>
 <body>
 <form method="post">
     {% csrf_token %}
+    <h1>Participant Registration</h1>
     Name:<br> 
     <input type="text" name="part_name"> 
     <br><br>
@@ -31,7 +32,11 @@
     <label for="Group">Group</label>
     <br><br>  
     Number of participants:<br>
-    <input type="text" name="people" id="people" disabled>
+    <select name="people" id="people">
+        {% for i in range %}
+            <option>{{ i }}</option>
+        {% endfor %}
+    </select> 
     <br><br>
     <script>
         function func() {

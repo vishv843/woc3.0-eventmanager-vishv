@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title></title>
+    <title>Event Registration</title>
         <style type="text/css">
             .container {
           
@@ -13,6 +13,7 @@
 <form method="POST"> 
 <div class ="container">
   {% csrf_token %}
+  <h1>Event Registration</h1>
   Name of the event:<br> 
   <input type="text" name="event_name"> 
   <br><br> 

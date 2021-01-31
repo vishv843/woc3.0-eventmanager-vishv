@@ -14,12 +14,12 @@ class event(models.Model):
     email_ID = models.EmailField()
 
 class participant(models.Model):
-    particpant_ID = models.IntegerField()
+    participant_ID = models.IntegerField()
     name = models.CharField(max_length = 50)
-    contact = models.IntegerField()
+    contact = models.CharField(max_length = 15)
     email_ID = models.EmailField()
     event_name = models.CharField(max_length = 50)
     registration_type = models.CharField(max_length = 20)
-    number_of_participants = models.IntegerField(null = True)
+    number_of_participants = models.PositiveIntegerField(null = True)
 
  
